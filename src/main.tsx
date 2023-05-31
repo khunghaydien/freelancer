@@ -5,43 +5,29 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Index from './component/Index';
-const menuList = [
-  {
-    name: 'Home',
-    id: '1',
-    position: 0
-  },
-  {
-    name: 'About us',
-    id: '2',
-    position: 0
-  },
-  {
-    name: 'Community',
-    id: '3',
-    position: 0
-  },
-  {
-    name: 'Blog',
-    id: '4',
-    position: 0
-  },
-  {
-    name: '',
-    id: '5',
-    position: 0
-  }
-]
+import Main from './component/main';
+import Sidebar from './component/Sidebar';
+import ErrorPage from './component/ErrorPage';
+import SidebarPage from './component/SidebarPage';
+import { menuList } from './domain/Const';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Index menuList={menuList}/>,
+    element: <Main menuList={menuList}/>,
+    errorElement:<ErrorPage></ErrorPage>,
     children:[{
-      path:'/menu/:menuId',
-      element:<>div</>
+      path:'/:menuId',
+      element:<Sidebar/>,
+      errorElement:<ErrorPage></ErrorPage>,
+      children:[
+        {
+          path:'/:menuId/:sidebarId',
+          element:<SidebarPage/>,
+          errorElement:<ErrorPage></ErrorPage>,
+        }
+      ]
     }]
-  }
+  },
 ])
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
