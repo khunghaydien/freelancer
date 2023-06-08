@@ -1,4 +1,4 @@
-import { Link, NavLink, Outlet, useParams } from "react-router-dom"
+import {  NavLink, Outlet, useParams } from "react-router-dom"
 import { sidebarList } from "../domain/Const";
 import './main.scss'
 const Sidebar = () => {
@@ -15,7 +15,7 @@ const Sidebar = () => {
                                 ? "pending sidebar__item"
                                 : "sidebar__item"
                     }>
-                        <Link to={`${id}`}>{name ? name : 'No Name'}</Link>
+                        {name ? name : 'No Name'}
                     </NavLink>
                 ))}
             </nav>

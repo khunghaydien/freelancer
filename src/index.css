@@ -3,7 +3,23 @@
   line-height: 1.5;
   font-weight: 400;
 }
-a{
+
+a {
   text-decoration: unset;
   color: unset;
+}
+
+.image img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.image__icon{
+  width: 20px;
+  height: 20px;
+}
+
+.image__icon--bell{
+  height: 17px !important;
 }

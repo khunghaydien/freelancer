@@ -1,7 +1,12 @@
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom"
+import { NavLink, Outlet, useLocation } from "react-router-dom"
 import { Menu } from "../domain/Const"
 import './main.scss'
 import Post from "./post/Post"
+import { postList } from "../domain/Post"
+import bell from './../image/bell.svg'
+import question from"./../image/question.svg" 
+import settings from"./../image/setting.svg"
+import search from "./../image/search.png"
 type MenuProps = {
     menuList: Menu[]
 }
@@ -20,23 +25,25 @@ const Index = ({ menuList }: MenuProps) => {
                                     ? "pending menu__item"
                                     : " menu__item"
                         }>
-                            <Link to={`${id}`}>{name ? name : 'No Name'}</Link>
+                            {name ? name : 'No Name'}
                         </NavLink>
                     ))}
                 </nav>
                 <div className="menu menu--sub">
-                    <input type="text" />
-                    <div>Notification</div>
-                    <div>Help</div>
-                    <div>Setting</div>
-                    <div>Profile</div>
+                    <div className="search">
+                        <input className="search__input" type="text" placeholder="search" />
+                        <div className="search__icon image image__icon "><img className="image__icon--search" src={search} alt="search" /></div> 
+                    </div>
+                    <div className="image image__icon menu__item"><img className="image__icon--bell" src={bell} alt="bell" /></div>
+                    <div className="image image__icon menu__item"><img className="image__icon--question" src={question} alt="question" /></div>
+                    <div className="image image__icon menu__item"><img className="image__icon--settings" src={settings}  alt="settings" /></div>
                 </div>
             </div>
             <div className="body">
                 <Outlet></Outlet>
-                {location.pathname ==='/' && (
-                    <Post/>
-                )} 
+                {location.pathname === '/' && (
+                    <Post postList={postList} />
+                )}
             </div>
         </>
     )
